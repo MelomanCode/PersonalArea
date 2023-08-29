@@ -1,0 +1,147 @@
+<form [formGroup]="formGroup" class="modal-body">
+  <ng-container *ngIf="getIsAccessControl('name')">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="name"
+      >Имя:
+      </label>
+      <input
+        class="form-control"
+        formControlName="name"
+        id="name"
+        type="text"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getIsAccessControl('imageLink')">
+    <div class="mb-3 flex-control">
+      <div class="image-link">
+        <label
+          class="form-label"
+          for="imageLink"
+        >Ваша иконка профиля</label
+        >
+        <input
+          class="form-control"
+          formControlName="imageLink"
+          id="imageLink"
+          type="url"
+        />
+      </div>
+      <div class="preview">
+        <img
+          [alt]="formGroup.get('imageLink')?.value"
+          [src]="formGroup.get('imageLink')?.value"
+          class="preview"
+        />
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getIsAccessControl('surname')">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="surname"
+      >Фамилия</label
+      >
+      <input
+        class="form-control"
+        formControlName="surname"
+        id="surname"
+        type="text"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getIsAccessControl('patronymic')">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="patronymic"
+      >Отчество:</label
+      >
+      <input
+        class="form-control"
+        formControlName="patronymic"
+        id="patronymic"
+        type="text"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getIsAccessControl('aboutMe')">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="aboutMe"
+      >О себе:</label
+      >
+      <input
+        class="form-control"
+        formControlName="aboutMe"
+        id="aboutMe"
+        type="text"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getIsAccessControl('dateOfBirth')">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="dateOfBirth"
+      >Дата рождения:</label
+      >
+      <input
+        class="form-control"
+        formControlName="dateOfBirth"
+        id="dateOfBirth"
+        type="text"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getIsAccessControl('personalQualities')">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="personalQualities"
+      >Личные качества:</label
+      >
+      <input
+        class="form-control"
+        formControlName="personalQualities"
+        id="personalQualities"
+        type="text"
+      />
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getIsAccessControl('email')">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="email"
+      >Email:</label
+      >
+      <input
+        class="form-control"
+        formControlName="email"
+        id="email"
+        type="text"
+      />
+    </div>
+  </ng-container>
+
+  <button
+    (click)="submitData()"
+    [disabled]="formGroup.invalid"
+    class="btn-submit"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
