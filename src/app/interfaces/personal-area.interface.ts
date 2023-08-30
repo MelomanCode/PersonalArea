@@ -5,15 +5,14 @@ export interface IUser {
   patronymic: string;
   imageLink?: string;
   aboutMe: string;
-  dateOfBirth: string;
+  dateOfBirth: number;
   personalQualities: string;
   email: string;
-  iconConfig: IIconConfig
+  iconConfig: IIconConfig;
 }
 
 export interface IIconConfig {
   color: string;
   text: string;
 }
-
 

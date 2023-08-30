@@ -1,1 +1,14 @@
+.area-body {
+  padding: 20px;
+  font-weight: bold;
+}
 
+.area-sample {
+  background-color: #d5a5a5;
+  min-height: 100vh;
+
+}
+
+.form-control {
+  background-color: #faee9e;
+}

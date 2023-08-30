@@ -12,12 +12,11 @@ import { IUser } from '../interfaces/personal-area.interface';
 export class HomeComponent implements OnInit {
   public users$ = new BehaviorSubject<IUser[]>([]);
 
-  constructor(
-    private personalAreaService: PersonalAreaService,
-  ) {}
+  constructor(private personalAreaService: PersonalAreaService) {}
 
   getIconConfig(user: IUser): { color: string; text: string } {
-   return user.iconConfig || {color: 'white', text: 'User'}
+    console.log(user.iconConfig)
+    return user.iconConfig;
   }
 
   ngOnInit() {
@@ -26,5 +25,9 @@ export class HomeComponent implements OnInit {
 
   add() {
     this.personalAreaService.addUser();
+  }
+
+  clearLocalStorageList() {
+    this.personalAreaService.clearLocalStorage();
   }
 }

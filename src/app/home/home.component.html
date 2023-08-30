@@ -1,4 +1,5 @@
-<ng-container>
+<div class="area">
+  <ng-container>
   <div class="button-add">
     <button
       class="btn btn-primary"
@@ -7,15 +8,14 @@
       Add New Profile
     </button>
   </div>
-  <div class="task-body">
+  <div class="task-body" style="background-color: #fce5e5">
     <div>
       <ng-container>
         <label class="form-label"><h3>Список юзеров:</h3></label>
-
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Users</th>
+              <th style="background-color: #f6caca" scope="col">Users</th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +39,14 @@
           </tbody>
         </table>
       </ng-container>
+      <button
+        style="margin-top: 15px"
+        class="btn btn-danger"
+        (click)="clearLocalStorageList()"
+      >
+        Clear Local Storage
+      </button>
     </div>
   </div>
 </ng-container>
+</div>

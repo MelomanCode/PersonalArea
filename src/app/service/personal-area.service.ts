@@ -48,13 +48,13 @@ export class PersonalAreaService {
       id: this.generateId(),
       name: '',
       aboutMe: '',
-      dateOfBirth: '',
+      dateOfBirth: 0,
       email: '',
       imageLink: '',
       patronymic: '',
       personalQualities: '',
       surname: '',
-      iconConfig: {color: '', text: ''}
+      iconConfig: {color: '#89ea00', text: 'user'}
     });
     this.setInLocalStorage();
     this.updateList();
@@ -71,6 +71,12 @@ export class PersonalAreaService {
   private getInLocalStorage() {
     this.users = getLocalStorage('users');
     this.updateList()
+  }
+
+  public clearLocalStorage(): void {
+    localStorage.setItem('users', '')
+    this.users = [];
+    location.reload()
   }
 
   getUser(id: number): IUser | null {
