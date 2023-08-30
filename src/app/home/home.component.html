@@ -1,6 +1,44 @@
-<div *ngFor="let entity of personalAreaArray"
-(click)="about()"
-><button>dfdwfwdfw</button></div>
-<button (click)="add()"></button>
+<ng-container>
+  <div class="button-add">
+    <button
+      class="btn btn-primary"
+      (click)="add()"
+    >
+      Add New Profile
+    </button>
+  </div>
+  <div class="task-body">
+    <div>
+      <ng-container>
+        <label class="form-label"><h3>Список юзеров:</h3></label>
 
-
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Users</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="user-link"
+              *ngFor="let user of users$ | async"
+            >
+              <div
+                class="image-link"
+                [ngStyle]="{
+                  'background-color': getIconConfig(user).color
+                }"
+              >
+                <a
+                  class="user-label"
+                  [routerLink]="['/user', user.id]"
+                  >{{ getIconConfig(user).text }}</a
+                >
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

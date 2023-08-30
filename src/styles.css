@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+.image-link {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

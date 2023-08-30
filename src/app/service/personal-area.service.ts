@@ -1,72 +1,80 @@
 import { Injectable } from '@angular/core';
-import {Entity, IEntityBase, IEntityByType, UserType} from "../interfaces/personal-area.interface";
-import {BehaviorSubject} from "rxjs";
+import { IUser } from '../interfaces/personal-area.interface';
+import { BehaviorSubject } from 'rxjs';
+import { getLocalStorage, setLocalStorage } from '../general.functions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonalAreaService {
-
-  private entityByTypes: IEntityByType<IEntityBase>[] = [];
-  private entityByTypes$ = new BehaviorSubject<IEntityByType<IEntityBase>[]>([]);
-
-  editableEntity: IEntityBase = new Entity();
-  personalAreaArray: IEntityBase[] = []
+  private users: IUser[] = [];
+  private users$ = new BehaviorSubject<IUser[]>([]);
 
   constructor() {
+    this.getInLocalStorage()
   }
-
-
-
-
-  private addInArray(): void {
-    const tmpResult: IEntityBase = {
-      name: this.editableEntity.name,
-      surname: this.editableEntity.surname,
-      patronymic: this.editableEntity.patronymic,
-      personalQualities: this.editableEntity.personalQualities,
-      email: this.editableEntity.email,
-      imageLink: this.editableEntity.imageLink,
-      aboutMe: this.editableEntity.aboutMe,
-      dateOfBirth: this.editableEntity.dateOfBirth,
-      id: this.editableEntity.id
-    }
-    this.personalAreaArray.push(tmpResult);
-  }
-
-  getCellsByTypesObservable() {
-    return this.entityByTypes$;
-  }
-
-  private updateList() {
-    this.entityByTypes$.next(this.entityByTypes);
-  }
-
-  updateUserArea(
-    typeOfUser: UserType,
-    id: number,
-    content: IEntityBase,
-  ) {
-    const entityByTypes = this.entityByTypes.find(
-      (type) => type.typeName === typeOfUser,
-    );
-    const foundUser = entityByTypes?.users.find(
-      (user) => user.id === id,
-    );
+  setInArray(data: IUser) {
+    const foundUser = this.users.find((user) => user.id === data.id);
     if (foundUser) {
-      foundUser.name = content.name;
-      foundUser.email = content.email;
-      foundUser.surname = content.surname;
-      foundUser.patronymic = content.patronymic;
-      foundUser.aboutMe = content.aboutMe;
-      foundUser.dateOfBirth = content.dateOfBirth;
-      foundUser.personalQualities = content.personalQualities;
-      foundUser.imageLink = content.imageLink;
-
+      foundUser.id = data.id;
+      foundUser.name = data.name;
+      foundUser.surname = data.surname;
+      foundUser.patronymic = data.patronymic;
+      foundUser.personalQualities = data.personalQualities;
+      foundUser.email = data.email;
+      foundUser.imageLink = data.imageLink;
+      foundUser.aboutMe = data.aboutMe;
+      foundUser.dateOfBirth = data.dateOfBirth;
+      foundUser.iconConfig = data.iconConfig;
+      this.setInLocalStorage();
       this.updateList();
     }
   }
 
+  getUsersObservable() {
+    return this.users$;
+  }
 
+  private generateId(): number {
+    let lastId = this.users.sort((a, b) => (a.id > b.id ? 1 : -1))[
+      this.users.length - 1
+    ]?.id;
+    return lastId !== undefined ? ++lastId : 0;
+  }
 
+  addUser() {
+    this.generateId();
+    this.users.push({
+      id: this.generateId(),
+      name: '',
+      aboutMe: '',
+      dateOfBirth: '',
+      email: '',
+      imageLink: '',
+      patronymic: '',
+      personalQualities: '',
+      surname: '',
+      iconConfig: {color: '', text: ''}
+    });
+    this.setInLocalStorage();
+    this.updateList();
+  }
+
+  private updateList() {
+    this.users$.next(this.users);
+  }
+
+  private setInLocalStorage(): void {
+    setLocalStorage('users', this.users);
+  }
+
+  private getInLocalStorage() {
+    this.users = getLocalStorage('users');
+    this.updateList()
+  }
+
+  getUser(id: number): IUser | null {
+    return this.users.find((user) => user.id === id) || null;
+
+  }
 }
