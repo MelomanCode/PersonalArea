@@ -3,7 +3,8 @@
     [formGroup]="formGroup"
     class="area-body"
   >
-    <div class="row row-cols-sm-auto">
+    <div style="width: 50%">
+    <div class="row row-cols-sm-3">
       <ng-container *ngIf="getIsAccessControl('name')">
         <div class="mb-3">
           <label
@@ -53,19 +54,8 @@
           />
         </div>
       </ng-container>
-
-      <ng-container *ngIf="getIsAccessControl('imageLink')">
-        <div class="mb-3 flex-control">
-          <div
-            class="image-link"
-            [ngStyle]="{ 'background-color': iconConfig.color || 'white' }"
-          >
-            {{ iconConfig.text || '' }}
-          </div>
-        </div>
-      </ng-container>
     </div>
-    <div class="row row-cols-lg-2">
+    <div class="row row-cols-lg-1">
       <ng-container *ngIf="getIsAccessControl('aboutMe')">
         <div class="mb-3">
           <label
@@ -114,7 +104,7 @@
         </form>
       </div>
     </ng-container>
-    <div class="row row-cols-lg-2">
+    <div class="row row-cols-lg-1">
       <ng-container *ngIf="getIsAccessControl('personalQualities')">
         <div class="mb-3">
           <label
@@ -132,7 +122,7 @@
       </ng-container>
     </div>
 
-    <div class="row row-cols-lg-4">
+    <div class="row row-cols-lg-2">
       <ng-container *ngIf="getIsAccessControl('email')">
         <div class="mb-3">
           <label
@@ -158,5 +148,18 @@
     >
       Submit
     </button>
+    </div>
+    <div class="icon-position">
+      <ng-container *ngIf="getIsAccessControl('imageLink')">
+        <div class="mb-3 flex-control">
+          <div
+                  class="icon-link"
+                  [ngStyle]="{ 'background-color': iconConfig.color || 'white' }"
+          >
+            {{ iconConfig.text || '' }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
   </form>
 </div>

@@ -11,7 +11,7 @@ export class PersonalAreaService {
   private users$ = new BehaviorSubject<IUser[]>([]);
 
   constructor() {
-    this.getInLocalStorage()
+    this.getInLocalStorage();
   }
   setInArray(data: IUser) {
     const foundUser = this.users.find((user) => user.id === data.id);
@@ -54,7 +54,7 @@ export class PersonalAreaService {
       patronymic: '',
       personalQualities: '',
       surname: '',
-      iconConfig: {color: '#89ea00', text: 'user'}
+      iconConfig: { color: '#89ea00', text: 'user' },
     });
     this.setInLocalStorage();
     this.updateList();
@@ -70,17 +70,16 @@ export class PersonalAreaService {
 
   private getInLocalStorage() {
     this.users = getLocalStorage('users');
-    this.updateList()
+    this.updateList();
   }
 
   public clearLocalStorage(): void {
-    localStorage.setItem('users', '')
+    localStorage.setItem('users', '');
     this.users = [];
-    location.reload()
+    location.reload();
   }
 
   getUser(id: number): IUser | null {
     return this.users.find((user) => user.id === id) || null;
-
   }
 }

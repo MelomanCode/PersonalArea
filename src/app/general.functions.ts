@@ -1,5 +1,4 @@
-import {IUser} from "./interfaces/personal-area.interface";
-
+import { IUser } from './interfaces/personal-area.interface';
 
 export const getLocalStorage = (key: 'users'): IUser[] => {
   const tmp = localStorage.getItem(key);

@@ -1,6 +1,30 @@
 .area-body {
-  padding: 20px;
+  padding: 30px;
   font-weight: bold;
+  display: flex;
+  flex-direction: row;
+}
+
+.form-control {
+  border-color: #1b1c1b;
+}
+
+.icon-position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.icon-link {
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  font-size: 100px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .area-sample {
