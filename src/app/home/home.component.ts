@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(private personalAreaService: PersonalAreaService) {}
 
   getIconConfig(user: IUser): { color: string; text: string } {
-    console.log(user.iconConfig);
     return user.iconConfig;
   }
 

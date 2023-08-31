@@ -81,6 +81,7 @@ export class PersonalAreaService {
 
   deleteUser(data: IUser) {
     this.users = this.users.filter((user) => user.id !== data.id);
+    this.updateList()
   }
 
   getUser(id: number): IUser | null {
