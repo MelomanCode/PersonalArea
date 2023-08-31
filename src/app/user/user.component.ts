@@ -88,7 +88,7 @@ export class UserComponent implements OnInit {
 
   private convertTimestampToDateFormat(timeStamp: number): NgbDateStruct {
     if (!timeStamp) {
-      return { day: 0, year: 1789, month: 0 };
+      return { day: 0, year: 1959, month: 0 };
     }
 
     const jsDate = new Date(timeStamp);

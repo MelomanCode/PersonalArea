@@ -79,6 +79,10 @@ export class PersonalAreaService {
     location.reload();
   }
 
+  deleteUser(data: IUser) {
+    this.users = this.users.filter((user) => user.id !== data.id);
+  }
+
   getUser(id: number): IUser | null {
     return this.users.find((user) => user.id === id) || null;
   }
